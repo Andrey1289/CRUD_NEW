@@ -49,7 +49,7 @@ public class DeveloperRepositoryImpl {
          pstatement.setLong(1, 0);
          pstatement.setString(2, developer.getFirstName());
          pstatement.setString(3,developer.getLastName());
-         pstatement.setString(4, );
+         pstatement.setString(4, String.valueOf(developer.getSkills()));
          pstatement.executeUpdate();
      } catch (SQLException e) {
          e.printStackTrace();
@@ -66,15 +66,15 @@ public class DeveloperRepositoryImpl {
    public Developer update(Developer developer ){
          PreparedStatement pstatement = null;
        try {
-           pstatement = connection().prepareStatement("UPDATE developers SET firstname = ?,  lastname = ?,  skill = ? WHERE id = ?");
+          pstatement = connection().prepareStatement("UPDATE developers SET firstname = ?,  lastname = ?, skill = ?  WHERE id = ?");
            String firstName = developer.getFirstName();
            String lastName = developer.getLastName();
-         String skills = String.valueOf(developer.getSkills());
-           pstatement.setString(1,firstName);
-           pstatement.setString(2,lastName);
-           pstatement.setString(3,skills);
-           pstatement.setLong(4,developer.getId());
-           pstatement.executeUpdate();
+           String skills = String.valueOf(developer.getSkills());
+            pstatement.setString(1,firstName);
+            pstatement.setString(2,lastName);
+            pstatement.setString(3, skills);
+            pstatement.setLong(4,developer.getId());
+            pstatement.executeUpdate();
        } catch (SQLException e) {
            e.printStackTrace();
        }finally {
@@ -107,8 +107,6 @@ public class DeveloperRepositoryImpl {
    }
     private List<Developer> getAllDevelopersInternal(){
      List<Developer> developers = new ArrayList<>();
-     List<Skill> skills = new ArrayList<>();
-     Skill skill = new Skill();
      Statement statement = null;
      ResultSet resultSet;
         String SQL = "SELECT * FROM developers";

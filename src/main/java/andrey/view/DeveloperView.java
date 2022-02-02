@@ -16,8 +16,8 @@ public class DeveloperView {
 
         private final DeveloperController dCont =new DeveloperController();
         public  void devView() {
-            Skill skill = new Skill();
-            ArrayList<Skill> skills = new ArrayList<>();
+          //  Skill skill = new Skill();
+          // ArrayList<Skill> skills = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
                 System.out.println("Меню для создания Developer");
                 System.out.println("Для завершения нажмите 'Exit'");
@@ -25,6 +25,8 @@ public class DeveloperView {
                 String strUser ="";
 
                 while(!strUser.equals("Exit")) {
+                    Skill skill = new Skill();
+                    ArrayList<Skill> skills = new ArrayList<>();
                     System.out.println("Введите действие: 'create' 'get' 'getAll' 'update' 'delete' ");
                     strUser= br.readLine().trim();
                     switch (strUser) {
@@ -36,8 +38,11 @@ public class DeveloperView {
                             System.out.println("создайте developer 'Skills'");
                             System.out.println("Введите 'Name'");
                             String name = br.readLine().trim();
-                            skill.setName(name);
-                            skills.add(skill);
+                            while(!name.equals("n")){
+                                System.out.println("Введите 'Name' или 'n' для выхода");
+                            //skill.setName(name);
+                            skills.add(new Skill(name));
+                            name = br.readLine().trim();}
                             dCont.create(firstName,lastName, skills);
                             System.out.println("Developer успешно создан");
                             break;
@@ -61,10 +66,12 @@ public class DeveloperView {
                             System.out.println("Введите 'ID' имя которого хотите изменить");
                             try {
                                 id = Long.parseLong(br.readLine().trim());
+                                dCont.get(id);
                             }catch (NumberFormatException e){
                                 System.out.println("Вы ввели не число");
                                 System.out.println("Введите 'ID' имя которого хотите изменить");
                                 id = Long.parseLong(br.readLine().trim());
+                                dCont.get(id);
                             }
                             System.out.println("Введите 'firstName'");
                             firstName = br.readLine().trim();
@@ -72,8 +79,11 @@ public class DeveloperView {
                             lastName = br.readLine().trim();
                             System.out.println("Введите 'Developer Skill'  имя");
                             name = br.readLine().trim();
-                            skill.setName(name);
-                            skills.add(skill);
+                            while(!name.equals("n")){
+                                System.out.println("Введите 'Name' или 'n' для выхода");
+                                //skill.setName(name);
+                                skills.add(new Skill(name));
+                                name = br.readLine().trim();}
                             dCont.update(id,firstName,lastName,skills);
                             System.out.println("Developer успешно изменен");
                             break;
@@ -81,10 +91,12 @@ public class DeveloperView {
                             System.out.println("ВВедите 'ID' для удаления");
                             try {
                                 id = Long.parseLong(br.readLine().trim());
+                                dCont.get(id);
                             }catch (NumberFormatException e){
                                 System.out.println("Вы ввели не число");
                                 System.out.println("ВВедите 'ID' для удаления");
                                 id = Long.parseLong(br.readLine().trim());
+                                dCont.get(id);
                             }
                             dCont.delete(id);
                             System.out.println("Developer успешно удален");
