@@ -8,6 +8,13 @@ public class Team {
     private List<Developer> developers;
 
     public Team(){}
+    public Team(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+    public Team(String name){
+        this.name = name;
+    }
 
     public Team(Long id,String name, List<Developer> developers){
         this.id = id;
@@ -43,7 +50,6 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", developers=" + developers +
                 '}';
     }
 }

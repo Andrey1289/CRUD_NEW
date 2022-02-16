@@ -28,25 +28,14 @@ public class TeamView {
             String strUser ="";
 
             while(!strUser.equals("EXIT")) {
-                System.out.println("Введите действие: 'create' 'get' 'update' 'delete' ");
+                System.out.println("Введите действие: 'create' 'get' 'getAll' 'update' 'delete' ");
                 strUser= br.readLine().trim();
                 switch (strUser) {
                     case "create":
                         Long id;
                         System.out.println("Введите Team 'Name'");
                         String teamName = br.readLine().trim();
-                        while(true){
-                        System.out.println("Добавте 'Developers' в 'Team' для выхода напишите 'Exit' для продолжения 'Enter'");
-                        if(br.readLine().equals("Exit"))
-                            break;
-                        System.out.println("Введите developer 'firstName'");
-                        String firstName = br.readLine().trim();
-                        System.out.println("Введите developer 'lastName'");
-                        String lastName = br.readLine().trim();
-                        developer.setFirstName(firstName);
-                        developer.setLastName(lastName);
-                        developers.add(developer);}
-                       tcont.create(teamName,developers );
+                       tcont.create(teamName);
                         System.out.println("Team успешно создана");
                         break;
                     case "get":
@@ -60,6 +49,9 @@ public class TeamView {
                         }
                         tcont.get(id);
                         break;
+                    case "getAll":
+                        tcont.getAll();
+                        break;
                    case "update":
                         id = 0L;
                         System.out.println("Введите 'ID' имя которого хотите изменить");
@@ -72,18 +64,7 @@ public class TeamView {
                         }
                        System.out.println("Введите Team 'Name'");
                         teamName = br.readLine().trim();
-                       while(true){
-                           System.out.println("Измените 'Developers' в 'Team' для выхода напишите 'Exit' для продолжения 'Enter'");
-                           if(br.readLine().equals("Exit"))
-                               break;
-                           System.out.println("Введите developer 'firstName'");
-                           String firstName = br.readLine().trim();
-                           System.out.println("Введите developer 'lastName'");
-                           String lastName = br.readLine().trim();
-                           developer.setFirstName(firstName);
-                           developer.setLastName(lastName);
-                           developers.add(developer);}
-                       tcont.update(id,teamName,developers );
+                       tcont.update(id,teamName);
                         System.out.println("Team успешно изменена");
                         break;
                     case "delete":

@@ -3,11 +3,11 @@ package andrey.controller;
 
 import andrey.model.Developer;
 import andrey.model.Skill;
-import andrey.repository.DeveloperRepositoryImpl;
+import andrey.repository.jdbc.JdbcDeveloperRepositoryImpl;
 import java.util.List;
 
 public class DeveloperController {
-    private final DeveloperRepositoryImpl devRepo = new DeveloperRepositoryImpl();
+    private final JdbcDeveloperRepositoryImpl devRepo = new JdbcDeveloperRepositoryImpl();
 
     public Developer get(Long id){
         return devRepo.getById(id);
@@ -16,20 +16,20 @@ public class DeveloperController {
         return devRepo.getAll();
     }
 
-    public Developer create(String firstName, String lastName, List<Skill> skills){
+    public Developer create(String firstName, String lastName, int team_id){
         Developer developer = new Developer();
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
-       developer.setSkills(skills);
+       developer.setTeamId(team_id);
       return devRepo.save(developer);
     }
 
-    public Developer update(Long id, String firstName, String lastName, List<Skill> skills){
+    public Developer update(Long id, String firstName, String lastName, int team_id){
         Developer developer = new Developer();
         developer.setId(id);
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
-        developer.setSkills(skills);
+        developer.setTeamId(team_id);
         return devRepo.update(developer);
     }
 

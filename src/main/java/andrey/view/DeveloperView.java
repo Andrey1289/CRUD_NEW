@@ -35,15 +35,9 @@ public class DeveloperView {
                             String firstName = br.readLine().trim();
                             System.out.println("Введите developer 'lastName'");
                             String lastName = br.readLine().trim();
-                            System.out.println("создайте developer 'Skills'");
-                            System.out.println("Введите 'Name'");
-                            String name = br.readLine().trim();
-                            while(!name.equals("n")){
-                                System.out.println("Введите 'Name' или 'n' для выхода");
-                            //skill.setName(name);
-                            skills.add(new Skill(name));
-                            name = br.readLine().trim();}
-                            dCont.create(firstName,lastName, skills);
+                            System.out.println("Введите 'team_id'");
+                            int team_id =Integer.parseInt(br.readLine().trim());
+                            dCont.create(firstName,lastName, team_id);
                             System.out.println("Developer успешно создан");
                             break;
                         case "get":
@@ -77,14 +71,9 @@ public class DeveloperView {
                             firstName = br.readLine().trim();
                             System.out.println("ВВедите 'lastName'");
                             lastName = br.readLine().trim();
-                            System.out.println("Введите 'Developer Skill'  имя");
-                            name = br.readLine().trim();
-                            while(!name.equals("n")){
-                                System.out.println("Введите 'Name' или 'n' для выхода");
-                                //skill.setName(name);
-                                skills.add(new Skill(name));
-                                name = br.readLine().trim();}
-                            dCont.update(id,firstName,lastName,skills);
+                            System.out.println("Введите 'team_id");
+                            team_id = Integer.parseInt(br.readLine().trim());
+                            dCont.update(id,firstName,lastName,team_id);
                             System.out.println("Developer успешно изменен");
                             break;
                         case "delete":

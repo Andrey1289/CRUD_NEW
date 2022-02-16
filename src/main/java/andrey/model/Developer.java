@@ -8,8 +8,23 @@ public class Developer {
   private String lastName;
   private List<Skill> skills;
 
-  public Developer(){
+  public int getTeamId() {
+    return teamId;
+  }
 
+  public void setTeamId(int teamId) {
+    this.teamId = teamId;
+  }
+
+  private int teamId;
+
+  public Developer(){}
+
+  public Developer(Long id, String firstName, String lastName, int teamId){
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.teamId = teamId;
   }
 
   public Developer(Long id, String firstName, String lastName, List<Skill> skills) {
@@ -17,6 +32,13 @@ public class Developer {
     this.firstName = firstName;
     this.lastName = lastName;
     this.skills = skills;
+  }
+  public Developer(String firstName){
+    this.firstName= firstName;
+  }
+  public Developer(String firstName,String lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public Long getId() {
@@ -57,7 +79,7 @@ public class Developer {
             "id=" + id +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
-            ", skills=" + skills +
+            ", teamId=" + teamId +
             '}';
   }
 

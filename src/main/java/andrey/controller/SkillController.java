@@ -1,14 +1,15 @@
 package andrey.controller;
 
 import andrey.model.Skill;
-import andrey.repository.SkillRepositoryImpl;
+import andrey.repository.jdbc.JdbcSkillRepositoryImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class SkillController {
-    private final SkillRepositoryImpl repo = new SkillRepositoryImpl();
+    private final JdbcSkillRepositoryImpl repo = new JdbcSkillRepositoryImpl();
 
-    public Skill get(Long id){
+    public Skill get(Long id) throws SQLException {
      return repo.getById(id);
     }
     public List<Skill> getAll(){
