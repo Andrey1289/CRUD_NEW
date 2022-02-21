@@ -1,9 +1,20 @@
 package andrey.utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class JdbcUtils {
     /**
@@ -17,14 +28,17 @@ public class JdbcUtils {
      */
     static final String USER = "root";
     static final String PASSWORD = "root";
-
+    static
+        ReadApplicationProperties readApplicationProperties = new ReadApplicationProperties();
     private static Connection connection;
 
     public static Connection getConnection() {
         if (connection == null){
             try {
-                Class.forName(JDBC_DRIVER);
-                connection = DriverManager.getConnection(DATABASE_URL,USER,PASSWORD);
+                Class.forName(readApplicationProperties.getJDBC_DRIVER());
+                connection = DriverManager.getConnection(readApplicationProperties.DATABASE_URL
+                        , readApplicationProperties.getUSER()
+                        , readApplicationProperties.PASSWORD);
 
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
