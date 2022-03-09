@@ -7,7 +7,12 @@ import andrey.repository.jdbc.JdbcDeveloperRepositoryImpl;
 import java.util.List;
 
 public class DeveloperController {
-    private final JdbcDeveloperRepositoryImpl devRepo = new JdbcDeveloperRepositoryImpl();
+    private final JdbcDeveloperRepositoryImpl devRepo;
+
+    public DeveloperController() {
+        devRepo = new JdbcDeveloperRepositoryImpl();
+    }
+
 
     public Developer get(Long id){
         return devRepo.getById(id);

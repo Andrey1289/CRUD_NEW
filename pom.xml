@@ -16,9 +16,19 @@
     <maven.compiler.target>11</maven.compiler.target>
     <junit.version>4.11</junit.version>
     <mysql.version>8.0.27</mysql.version>
+    <liquibase.version>4.8.0</liquibase.version>
+
+    <profile.propertyFile>src/main/resources/liquibase.properties</profile.propertyFile>
+    <profile.changeLogFile>src/main/resources/master.xml</profile.changeLogFile>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibase.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -34,6 +44,22 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>4.7.1</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <configuration>
+              <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+            </configuration>
+            <goals>
+              <goal>update</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

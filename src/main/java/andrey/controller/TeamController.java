@@ -6,7 +6,12 @@ import andrey.repository.jdbc.JdbcTeamRepositoryImpl;
 import java.util.List;
 
 public class TeamController {
-    private final JdbcTeamRepositoryImpl tRepo = new JdbcTeamRepositoryImpl();
+    private final JdbcTeamRepositoryImpl tRepo;
+
+    public TeamController() {
+        tRepo = new JdbcTeamRepositoryImpl();
+    }
+
 
     public Team get(Long id){
         return tRepo.getById(id);

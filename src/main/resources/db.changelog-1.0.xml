@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
+    <changeSet id="1.0" author="andrey">
+        <createTable tableName="teams">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+  
+    <changeSet id="1.1" author="andrey">
+        <createTable tableName="skills">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(45)" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1.2" author="andrey">
+        <createTable  tableName="developers" >
+            <column name="id" type="INT" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstName" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team_id" type="INT">
+                <constraints foreignKeyName="team_id" referencedTableName="teams" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="1.3" author="andrey">
+        <createTable tableName="developers_skills">
+            <column name="developer_id" type="INT">
+                <constraints foreignKeyName="developer_id" referencedTableName="developers" referencedColumnNames="id" nullable="false"/>
+            </column>
+            <column name="skill_id" type="INT">
+                <constraints foreignKeyName="skill_id" referencedTableName="skills" referencedColumnNames="id" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

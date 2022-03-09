@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SkillController {
-    private final JdbcSkillRepositoryImpl repo = new JdbcSkillRepositoryImpl();
+    private final JdbcSkillRepositoryImpl repo;
+
+    public SkillController() {
+       repo = new JdbcSkillRepositoryImpl();
+    }
 
     public Skill get(Long id) throws SQLException {
      return repo.getById(id);
