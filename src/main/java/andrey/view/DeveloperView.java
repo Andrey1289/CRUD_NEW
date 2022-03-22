@@ -16,8 +16,6 @@ public class DeveloperView {
 
         private final DeveloperController dCont =new DeveloperController();
         public  void devView() {
-          //  Skill skill = new Skill();
-          // ArrayList<Skill> skills = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
                 System.out.println("Меню для создания Developer");
                 System.out.println("Для завершения нажмите 'Exit'");

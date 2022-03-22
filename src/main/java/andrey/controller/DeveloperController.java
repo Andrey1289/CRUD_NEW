@@ -1,24 +1,22 @@
 package andrey.controller;
-
-
 import andrey.model.Developer;
-import andrey.model.Skill;
-import andrey.repository.jdbc.JdbcDeveloperRepositoryImpl;
+import andrey.service.DeveloperService;
+
 import java.util.List;
 
 public class DeveloperController {
-    private final JdbcDeveloperRepositoryImpl devRepo;
+    private final DeveloperService devService;
 
     public DeveloperController() {
-        devRepo = new JdbcDeveloperRepositoryImpl();
+        devService = new DeveloperService();
     }
 
 
     public Developer get(Long id){
-        return devRepo.getById(id);
+        return devService.get(id);
     }
     public List<Developer> getAll(){
-        return devRepo.getAll();
+        return devService.getAll();
     }
 
     public Developer create(String firstName, String lastName, int team_id){
@@ -26,7 +24,7 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
        developer.setTeamId(team_id);
-      return devRepo.save(developer);
+      return devService.redirectSavingDeveloper(developer);
     }
 
     public Developer update(Long id, String firstName, String lastName, int team_id){
@@ -35,10 +33,10 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         developer.setTeamId(team_id);
-        return devRepo.update(developer);
+        return devService.redirectUpdatedDeveloper(developer);
     }
 
     public void delete(Long id){
-        devRepo.deleteById(id);
+        devService.delete(id);
     }
 }

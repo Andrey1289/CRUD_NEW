@@ -3,37 +3,39 @@ package andrey.controller;
 import andrey.model.Developer;
 import andrey.model.Team;
 import andrey.repository.jdbc.JdbcTeamRepositoryImpl;
+import andrey.service.TeamService;
+
 import java.util.List;
 
 public class TeamController {
-    private final JdbcTeamRepositoryImpl tRepo;
+    private final TeamService teamService;
 
     public TeamController() {
-        tRepo = new JdbcTeamRepositoryImpl();
+        teamService = new TeamService();
     }
 
 
     public Team get(Long id){
-        return tRepo.getById(id);
+        return teamService.get(id);
     }
     public List<Team> getAll(){
-        return tRepo.getAll();
+        return teamService.getAll();
     }
 
     public Team create( String name){
      Team team = new Team();
      team.setName(name);
-     return tRepo.save(team);
+     return teamService.redirectSavedTeam(team);
     }
 
     public Team update(Long id, String name){
         Team team = new Team();
         team.setId(id);
         team.setName(name);
-        return tRepo.update(team);
+        return teamService.redirectUpdatedTeam(team);
     }
 
     public void delete(Long id){
-        tRepo.deleteById(id);
+       teamService.delete(id);
     }
 }

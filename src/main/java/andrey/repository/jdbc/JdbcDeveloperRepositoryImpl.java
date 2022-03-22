@@ -1,17 +1,14 @@
 package andrey.repository.jdbc;
 
 import andrey.model.Developer;
-import andrey.model.Skill;
-import andrey.model.Team;
+import andrey.repository.DeveloperRepository;
 import andrey.utils.JdbcUtils;
 import andrey.utils.SQLQueries;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class JdbcDeveloperRepositoryImpl {
+public class JdbcDeveloperRepositoryImpl implements DeveloperRepository {
 
        public Developer getById(Long id){
            Developer developer = null;

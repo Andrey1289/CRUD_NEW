@@ -36,9 +36,9 @@ public class JdbcUtils {
         if (connection == null){
             try {
                 Class.forName(readApplicationProperties.getJDBC_DRIVER());
-                connection = DriverManager.getConnection(readApplicationProperties.DATABASE_URL
+                connection = DriverManager.getConnection(readApplicationProperties.getDATABASE_URL()
                         , readApplicationProperties.getUSER()
-                        , readApplicationProperties.PASSWORD);
+                        , readApplicationProperties.getPASSWORD());
 
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
