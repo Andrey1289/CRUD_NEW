@@ -11,15 +11,15 @@ public class DeveloperService {
     }
 
      public Developer get(Long id){
-        return devRepo.getById(id);
-     }
+       return devRepo.getById(id);
+      }
      public List<Developer> getAll(){
         return devRepo.getAll();
      }
-     public Developer redirectSavingDeveloper(Developer developer){
+     public Developer createDeveloper(Developer developer){
         return devRepo.save(developer);
      }
-     public Developer redirectUpdatedDeveloper(Developer developer){
+     public Developer updateDeveloper(Developer developer){
         return devRepo.update(developer);
      }
      public void delete(Long id){

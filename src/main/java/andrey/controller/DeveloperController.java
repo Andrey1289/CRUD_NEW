@@ -24,7 +24,7 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
        developer.setTeamId(team_id);
-      return devService.redirectSavingDeveloper(developer);
+      return devService.createDeveloper(developer);
     }
 
     public Developer update(Long id, String firstName, String lastName, int team_id){
@@ -33,7 +33,7 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         developer.setTeamId(team_id);
-        return devService.redirectUpdatedDeveloper(developer);
+        return devService.updateDeveloper(developer);
     }
 
     public void delete(Long id){

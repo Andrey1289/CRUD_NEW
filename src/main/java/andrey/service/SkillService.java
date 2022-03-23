@@ -16,10 +16,10 @@ public class SkillService {
     public List<Skill> getAll(){
         return skillRepo.getAll();
     }
-    public Skill redirectSavedSkill(Skill skill){
+    public Skill saveSkill(Skill skill){
         return skillRepo.save(skill);
     }
-    public Skill redirectUpdatedSkill(Skill skill){
+    public Skill updateSkill(Skill skill){
         return skillRepo.update(skill);
     }
     public void delete(Long id){

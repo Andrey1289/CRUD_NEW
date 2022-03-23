@@ -24,7 +24,7 @@ public class SkillController {
      public Skill create(String name){
         Skill s = new Skill();
         s.setName(name);
-        return skillService.redirectSavedSkill(s);
+        return skillService.saveSkill(s);
      }
      public void  delete(Long id){
       skillService.delete(id);
@@ -33,7 +33,7 @@ public class SkillController {
         Skill s = new Skill();
         s.setId(id);
         s.setName(name);
-        return skillService.redirectUpdatedSkill(s);
+        return skillService.updateSkill(s);
      }
 
 }

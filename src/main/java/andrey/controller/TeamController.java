@@ -14,7 +14,6 @@ public class TeamController {
         teamService = new TeamService();
     }
 
-
     public Team get(Long id){
         return teamService.get(id);
     }
@@ -25,14 +24,14 @@ public class TeamController {
     public Team create( String name){
      Team team = new Team();
      team.setName(name);
-     return teamService.redirectSavedTeam(team);
+     return teamService.saveTeam(team);
     }
 
     public Team update(Long id, String name){
         Team team = new Team();
         team.setId(id);
         team.setName(name);
-        return teamService.redirectUpdatedTeam(team);
+        return teamService.updateTeam(team);
     }
 
     public void delete(Long id){

@@ -17,10 +17,10 @@ public class TeamService {
     public List<Team> getAll(){
         return teamRepo.getAll();
     }
-    public Team redirectSavedTeam(Team team){
+    public Team saveTeam(Team team){
         return teamRepo.save(team);
     }
-    public Team redirectUpdatedTeam(Team team){
+    public Team updateTeam(Team team){
         return teamRepo.update(team);
     }
     public void delete(Long id){

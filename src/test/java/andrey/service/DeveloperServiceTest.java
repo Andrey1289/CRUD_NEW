@@ -3,28 +3,18 @@ package andrey.service;
 import andrey.model.Developer;
 import andrey.repository.jdbc.JdbcDeveloperRepositoryImpl;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-
-import java.util.Optional;
-import java.util.UUID;
-
-import static java.lang.Math.random;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
+import static org.mockito.Mockito.*;
 
 public class DeveloperServiceTest {
-    public ExpectedException expectedException = ExpectedException.none();
-    @Mock
-    private JdbcDeveloperRepositoryImpl developerRepository ;
-    @Spy
-    private DeveloperService developerService ;
+
+    private JdbcDeveloperRepositoryImpl developerRepository = mock(JdbcDeveloperRepositoryImpl.class);
+    private DeveloperService developerService = spy(DeveloperService.class);
     Developer developer = new Developer();
     @Before
     public void setUp() {
@@ -32,6 +22,8 @@ public class DeveloperServiceTest {
         developer.setFirstName("Ivan");
         developer.setLastName("Ivanov");
         developer.setTeamId(1);
+
+
     }
     @Test
     public void shouldCreatedDeveloperInstanceTest(){
@@ -42,19 +34,31 @@ public class DeveloperServiceTest {
 
      @Test
     public void testMethodGetDeveloperService(){
-       Long id = 1l;
-       Mockito.doReturn(Optional.of(new Developer())).when(developerRepository).getById(ArgumentMatchers.any());
-       developer = developerService.get(id);
-       Mockito.verify(developerRepository).getById(ArgumentMatchers.eq(id));
-        assertNotNull(developer);
+       when(developerRepository.getById(anyLong())).thenReturn(developer);
+      developerRepository.getById(anyLong());
+       verify(developerRepository,times(1)).getById(anyLong());
+       assertNotNull(developerRepository.getById(anyLong()));
      }
      @Test
      public void testMethodGetAllDeveloperService(){
+           doReturn(IntStream.range(0,3).mapToObj(o -> new Developer()).collect(Collectors.toList()))
+                   .when(developerRepository).getAll();
+         List<Developer> developerList = developerRepository.getAll();
+         verify(developerRepository).getAll();
+         assertNotNull(developerList);
+         assertEquals(3l,developerList.size());
+     }
+     @Test
+    public void testMethodSaveDeveloper(){
+          developerService.createDeveloper(developer);
+          verify(developerService).createDeveloper(developer);
+          assertEquals(developer.getFirstName(), "Ivan");
+          assertEquals(developer.getLastName(), "Ivanov");
 
      }
      @Test
-    public void testMethodRedirectSavedDeveloper(){
-        assertNotNull(developer);
+     public void testMethodUpdateDeveloper(){
+
      }
      @Test
     public void testMethodDeleteDeveloperService(){
